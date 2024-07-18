@@ -8,7 +8,7 @@
             type="text" name="search">
     </div>
 
-    <div class="w-full h-[90%] mt-4 center justify-start no-scroll flex-col gap-y-5 overflow-y-scroll px-2">
+    <div class="w-full h-[90%] mt-4 center justify-start no-scroll flex-col gap-y-5 overflow-y-scroll">
         <template v-for="song in Songs">
             <div @click="handleAudioClick(song)" class="w-full h-16 flex items-center gap-x-2">
                 <img class="size-16 rounded-md" :src="song.image[2].url" alt="song">
