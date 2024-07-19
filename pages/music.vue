@@ -29,7 +29,7 @@
         <div class="w-full h-auto center gap-x-2">
             <p class="text-slate-300 text-sm">{{ ctimer }}</p>
             <div class="min-w-[80%] max-w-[80%] h-2 bg-slate-600 rounded-full relative">
-                <input class="absolute top-0 left-0 h-full bg-white rounded-full w-full" type="range" v-model="progress" @click="HandleSeeker" min="0" max="100">
+                <input class="absolute top-0 left-0 h-full bg-white rounded-full w-full" type="range" v-model="progress" @click="HandleSeeker" @touchmove="HandleSeeker" min="0" max="100">
                 <!-- <div class="absolute top-0 left-0 h-full bg-white rounded-full" :style="{ width: progress + '%' }"></div> -->
             </div>
             <p class="text-slate-300 text-sm">{{ etimer }}</p>
@@ -86,7 +86,7 @@ watchEffect(() => {
 })
 
 function HandleSeeker() {
-    var seekTime = (progress.value / 100) * audio.value.audio.duration;
+    var seekTime = audio.value.audio.duration * (progress.value / 100)
     audio.value.audio.currentTime = seekTime
 }
 </script>
