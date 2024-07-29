@@ -17,27 +17,56 @@
     </div>
 
     <div class="w-full h-[90%] center justify-normal flex-col gap-y-4">
+        <template v-if="audio.isPlaying">
+            <div class="w-full h-1/2 center">
+                <img class="w-3/4 h-3/4 object-center rounded-xl" :src="audio.trackImage" alt="trackImage">
+            </div>
+
+            <div class="w-full h-auto center flex-col truncate">
+                <h4 class="font-semibold text-slate-300">{{ audio.tractName.split(" ").slice(0, 2).join(" ") }}</h4>
+                <p class="text-sm text-slate-500">{{ audio.currentArtist }}</p>
+            </div>
+
+            <div class="w-full h-auto center gap-x-2">
+                <p class="text-slate-300 text-sm">{{ ctimer }}</p>
+                <div class="min-w-[80%] max-w-[80%] h-2 bg-slate-600 rounded-full relative">
+                    <input class="absolute top-0 left-0 h-full bg-white rounded-full w-full" type="range"
+                        v-model="progress" @touchmove="HandleSeeker" @touchend="HandleSeeker" @touchstart="HandleSeeker"
+                        min="0" max="100">
+                </div>
+                <p class="text-slate-300 text-sm">{{ etimer }}</p>
+            </div>
+
+            <div class="w-full h-auto center gap-x-6 text-[#DBEDF3]">
+                <Icon class="text-2xl" icon="solar:skip-previous-bold" />
+                <Icon @click="playorpause" class="text-6xl"
+                    :icon="audio.isPlaying ? 'solar:pause-circle-bold' : 'solar:play-circle-bold'" />
+                <Icon class="text-2xl" icon="solar:skip-next-bold" />
+            </div>
+        </template>
+        <template v-else>
+
+        </template>
         <div class="w-full h-1/2 center">
-            <img class="w-3/4 h-3/4 object-center rounded-xl" :src="audio.trackImage" alt="trackImage">
+            <Icon class="text-[16rem] text-white" icon="solar:turntable-music-note-bold"></Icon>
         </div>
 
         <div class="w-full h-auto center flex-col truncate">
-            <h4 class="font-semibold text-slate-300">{{ audio.tractName.split(" ").slice(0, 2).join(" ") }}</h4>
-            <p class="text-sm text-slate-500">{{ audio.currentArtist }}</p>
+            <h4 class="font-semibold text-slate-300">Not Playing</h4>
         </div>
 
         <div class="w-full h-auto center gap-x-2">
-            <p class="text-slate-300 text-sm">{{ ctimer }}</p>
+            <p class="text-slate-300 text-sm">0:00</p>
             <div class="min-w-[80%] max-w-[80%] h-2 bg-slate-600 rounded-full relative">
-                <input class="absolute top-0 left-0 h-full bg-white rounded-full w-full" type="range" v-model="progress" @touchmove="HandleSeeker" @touchend="HandleSeeker" @touchstart="HandleSeeker" min="0" max="100">
-                <!-- <div class="absolute top-0 left-0 h-full bg-white rounded-full" :style="{ width: progress + '%' }"></div> -->
+                <input class="absolute top-0 left-0 h-full bg-white rounded-full w-full" type="range" value="0" min="0"
+                    max="100">
             </div>
-            <p class="text-slate-300 text-sm">{{ etimer }}</p>
+            <p class="text-slate-300 text-sm">0:00</p>
         </div>
 
         <div class="w-full h-auto center gap-x-6 text-[#DBEDF3]">
             <Icon class="text-2xl" icon="solar:skip-previous-bold" />
-            <Icon @click="playorpause" class="text-6xl" :icon="audio.isPlaying ? 'solar:pause-circle-bold':'solar:play-circle-bold'" />
+            <Icon class="text-6xl" :icon="audio.isPlaying ? 'solar:pause-circle-bold' : 'solar:play-circle-bold'" />
             <Icon class="text-2xl" icon="solar:skip-next-bold" />
         </div>
     </div>
@@ -54,7 +83,9 @@ const progress = ref(0)
 const { audio, playorpause } = usePlayer()
 
 onMounted(() => {
-    loadmetadata()
+    if (audio.value.isPlaying) {
+        loadmetadata()
+    }
 })
 
 const timeupdate = () => {

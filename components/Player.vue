@@ -23,7 +23,6 @@
 
 <script setup>
 import { Icon } from '@iconify/vue/dist/iconify.js';
-import Music from '~/pages/music.vue';
 
 const isPlaying = ref(false)
 const isPaused = ref(false)
