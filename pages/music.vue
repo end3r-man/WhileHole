@@ -45,30 +45,29 @@
             </div>
         </template>
         <template v-else>
-
-        </template>
-        <div class="w-full h-1/2 center">
-            <Icon class="text-[16rem] text-white" icon="solar:turntable-music-note-bold"></Icon>
-        </div>
-
-        <div class="w-full h-auto center flex-col truncate">
-            <h4 class="font-semibold text-slate-300">Not Playing</h4>
-        </div>
-
-        <div class="w-full h-auto center gap-x-2">
-            <p class="text-slate-300 text-sm">0:00</p>
-            <div class="min-w-[80%] max-w-[80%] h-2 bg-slate-600 rounded-full relative">
-                <input class="absolute top-0 left-0 h-full bg-white rounded-full w-full" type="range" value="0" min="0"
-                    max="100">
+            <div class="w-full h-1/2 center">
+                <Icon class="text-[16rem] text-white" icon="solar:turntable-music-note-bold"></Icon>
             </div>
-            <p class="text-slate-300 text-sm">0:00</p>
-        </div>
 
-        <div class="w-full h-auto center gap-x-6 text-[#DBEDF3]">
-            <Icon class="text-2xl" icon="solar:skip-previous-bold" />
-            <Icon class="text-6xl" :icon="audio.isPlaying ? 'solar:pause-circle-bold' : 'solar:play-circle-bold'" />
-            <Icon class="text-2xl" icon="solar:skip-next-bold" />
-        </div>
+            <div class="w-full h-auto center flex-col truncate">
+                <h4 class="font-semibold text-slate-300">Not Playing</h4>
+            </div>
+
+            <div class="w-full h-auto center gap-x-2">
+                <p class="text-slate-300 text-sm">0:00</p>
+                <div class="min-w-[80%] max-w-[80%] h-2 bg-slate-600 rounded-full relative">
+                    <input class="absolute top-0 left-0 h-full bg-white rounded-full w-full" type="range" value="0"
+                        min="0" max="100">
+                </div>
+                <p class="text-slate-300 text-sm">0:00</p>
+            </div>
+
+            <div class="w-full h-auto center gap-x-6 text-[#DBEDF3]">
+                <Icon class="text-2xl" icon="solar:skip-previous-bold" />
+                <Icon class="text-6xl" :icon="audio.isPlaying ? 'solar:pause-circle-bold' : 'solar:play-circle-bold'" />
+                <Icon class="text-2xl" icon="solar:skip-next-bold" />
+            </div>
+        </template>
     </div>
 </template>
 
