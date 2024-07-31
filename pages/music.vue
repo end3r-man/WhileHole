@@ -17,7 +17,7 @@
     </div>
 
     <div class="w-full h-[90%] center justify-normal flex-col gap-y-4">
-        <template v-if="audio.isPlaying">
+        <template v-if="audio.isPlaying || audio.audio.paused">
             <div class="w-full h-1/2 center">
                 <img class="w-3/4 h-3/4 object-center rounded-xl" :src="audio.trackImage" alt="trackImage">
             </div>

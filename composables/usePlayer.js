@@ -5,6 +5,7 @@ export default function usePlayer(song) {
         audio: null,
         currentArtist: null,
         currentTract: null,
+        playlist: null,
         trackImage: null,
         tractName: null
     }))
@@ -38,6 +39,9 @@ export default function usePlayer(song) {
             audio.value.audio.play()
             audio.value.isPlaying = true
         }
+    }
+
+    function nextSong(song) {
     }
 
     return {
