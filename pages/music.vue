@@ -17,21 +17,21 @@
     </div>
 
     <div class="w-full h-[90%] center justify-normal flex-col gap-y-4">
-        <template v-if="audio.isPlaying">
+        <template v-if="audio.isPlaying || audio.audio.paused">
             <div class="w-full h-1/2 center">
-                <img class="w-3/4 h-3/4 object-center rounded-xl" :src="audio.trackImage" alt="trackImage">
+                <img class="w-3/4 h-3/4 object-center rounded-xl" :src="audio.TrackImage" alt="trackImage">
             </div>
 
             <div class="w-full h-auto center flex-col truncate">
-                <h4 class="font-semibold text-slate-300">{{ audio.tractName.split(" ").slice(0, 2).join(" ") }}</h4>
-                <p class="text-sm text-slate-500">{{ audio.currentArtist }}</p>
+                <h4 class="font-semibold text-slate-300">{{ audio.CurrentAlbum.split(" ").slice(0, 2).join(" ") }}</h4>
+                <p class="text-sm text-slate-500">{{ audio.CurrentArtist }}</p>
             </div>
 
             <div class="w-full h-auto center gap-x-2">
                 <p class="text-slate-300 text-sm">{{ ctimer }}</p>
                 <div class="min-w-[80%] max-w-[80%] h-2 bg-slate-600 rounded-full relative">
                     <input class="absolute top-0 left-0 h-full bg-white rounded-full w-full" type="range"
-                        v-model="progress" @touchmove="HandleSeeker" @touchend="HandleSeeker" @touchstart="HandleSeeker"
+                        v-model="progress" @click="HandleSeeker" @touchmove="HandleSeeker" @touchend="HandleSeeker" @touchstart="HandleSeeker"
                         min="0" max="100">
                 </div>
                 <p class="text-slate-300 text-sm">{{ etimer }}</p>
@@ -79,7 +79,7 @@ const player = ref(null)
 const ctimer = ref('0:00')
 const etimer = ref('0:00')
 const progress = ref(0)
-const { audio, playorpause } = usePlayer()
+const { audio, playorpause, nextSong } = usePlayer()
 
 onMounted(() => {
     if (audio.value.isPlaying) {
@@ -114,6 +114,14 @@ watchEffect(() => {
         }
     }
 })
+
+watch(() => ctimer.value, (time) => {
+    if (time && time == etimer.value) {
+        nextSong(audio.value.CurrentTrack)
+    }
+})
+
+
 
 function HandleSeeker() {
     var seekTime = audio.value.audio.duration * (progress.value / 100)

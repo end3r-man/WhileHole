@@ -106,8 +106,8 @@
             <h3 class="text-left w-full text-2xl font-semibold text-[#DBEDF3] mt-5">Top Songs</h3>
 
             <section class="w-full h-1/2 flex justify-start flex-col gap-y-4 overflow-y-scroll no-scroll mt-2 pb-24">
-                <template v-for="list in Playlist">
-                    <div @click="handleAudioClick(list)"
+                <template v-for="(list, index) in Playlist">
+                    <div @click="handleAudioClick(index, Playlist)"
                         class="w-full min-h-20 flex items-center justify-between gap-x-2">
                         <img class="size-20 rounded-md" :src="list.image[2].url" alt="song">
                         <div class="h-full w-1/2 flex flex-col justify-center">
@@ -134,8 +134,8 @@ const Playlist = ref(null)
 const loader = ref(false)
 const { loadSong, audio } = usePlayer()
 
-const handleAudioClick = (song) => {
-    loadSong(song);
+const handleAudioClick = (index, playlist) => {
+    loadSong(index, playlist)
 }
 
 onMounted(() => {
