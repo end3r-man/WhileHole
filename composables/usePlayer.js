@@ -3,18 +3,21 @@ export default function usePlayer(song) {
     const audio = useState('song', () => ({
         isPlaying: false,
         audio: null,
-        currentArtist: null,
-        currentTract: null,
-        playlist: null,
-        trackImage: null,
-        tractName: null
+        CurrentArtist: null,
+        CurrentAlbum: null,
+        CurrentTrack: null,
+        Playlist: null,
+        TrackImage: null,
+        TractName: null,
     }))
 
-    function loadSong(song) {
-        audio.value.currentArtist = song.artists.all[0].name
-        audio.value.currentTract = song.album.id
-        audio.value.tractName = song.album.name
-        audio.value.trackImage = song.image[2].url
+    function loadSong(index, playlist) {
+        audio.value.Playlist = playlist
+        audio.value.CurrentTrack = index
+        audio.value.CurrentArtist = playlist[index].artists.all[0].name
+        audio.value.CurrentAlbum = playlist[index].album.id
+        audio.value.TractName = playlist[index].album.name
+        audio.value.TrackImage = playlist[index].image[2].url
 
         if (audio.value.isPlaying && audio.value.audio.src != '') {
             audio.value.audio.pause()
@@ -23,7 +26,7 @@ export default function usePlayer(song) {
         }
 
         audio.value.audio = new Audio()
-        audio.value.audio.src = song.downloadUrl[3].url
+        audio.value.audio.src = playlist[index].downloadUrl[3].url
 
         setTimeout(() => {
             audio.value.isPlaying = true
@@ -41,12 +44,20 @@ export default function usePlayer(song) {
         }
     }
 
-    function nextSong(song) {
+    function nextSong(index) {
+        if (index === audio.value.Playlist.length) {
+            let index = 0
+            loadSong(index, audio.value.Playlist)
+        }else {
+            let current = index + 1
+            loadSong(current, audio.value.Playlist)
+        }
     }
 
     return {
         audio,
         loadSong,
-        playorpause
+        nextSong,
+        playorpause,
     }
 }
