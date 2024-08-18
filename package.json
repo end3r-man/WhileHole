@@ -19,14 +19,16 @@
     "@capacitor/haptics": "6.0.0",
     "@capacitor/keyboard": "6.0.1",
     "@capacitor/status-bar": "6.0.0",
-    "nuxt": "^3.12.3",
+    "@jofr/capacitor-media-session": "^4.0.0",
+    "install": "^0.13.0",
+    "nuxt": "^3.12.4",
     "vue": "latest"
   },
   "version": "0.0.0",
   "devDependencies": {
     "@iconify/vue": "^4.1.2",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.39",
-    "tailwindcss": "^3.4.6"
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10"
   }
 }

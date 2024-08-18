@@ -1,5 +1,6 @@
 <template>
-    <div class="w-full h-full center justify-start flex-col gap-y-2 overflow-hidden" :class="loader ? '':'justify-center text-[#404B69]'">
+    <div class="w-full h-full center justify-start flex-col gap-y-2 overflow-hidden"
+        :class="loader ? '' : 'justify-center text-[#404B69]'">
         <template v-if="!loader">
             <svg xmlns="http://www.w3.org/2000/svg" width="4rem" height="4rem" viewBox="0 0 24 24">
                 <rect width="7.33" height="7.33" x="1" y="1" fill="currentColor">
@@ -92,7 +93,7 @@
         <template v-else>
 
             <Navbar />
-            
+
             <h3 class="text-left w-full text-2xl font-semibold text-[#DBEDF3]">Trending Playlist</h3>
 
             <section class="w-full h-auto flex justify-start gap-x-4 overflow-x-scroll no-scroll mt-2">
@@ -130,6 +131,7 @@
 <script setup>
 import { CapacitorHttp } from '@capacitor/core';
 import { Icon } from '@iconify/vue';
+import { MediaSession } from '@jofr/capacitor-media-session';
 
 const Trending = ref(null)
 const Playlist = ref(null)

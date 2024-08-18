@@ -27,10 +27,18 @@ import { Icon } from '@iconify/vue/dist/iconify.js';
 const isPlaying = ref(false)
 const isPaused = ref(false)
 const progress = ref(0)
-const { audio, playorpause } = usePlayer()
+const { audio, playorpause, UpdateMediaSession } = usePlayer()
 
 const timeupdate = () => {
     progress.value = (audio.value.audio.currentTime / audio.value.audio.duration) * 100
+
+    // let mediaState = ({
+    //     duration: audio.value.audio.duration,
+    //     rate: 1,
+    //     postion: audio.value.audio.currentTime
+    // })
+
+    // UpdateMediaSession(mediaState)
 }
 
 watchEffect(() => {

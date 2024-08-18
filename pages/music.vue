@@ -85,7 +85,7 @@ const player = ref(null)
 const ctimer = ref('0:00')
 const etimer = ref('0:00')
 const progress = ref(0)
-const { audio, playorpause, nextSong } = usePlayer()
+const { audio, playorpause, nextSong, UpdateMediaSession } = usePlayer()
 
 onMounted(() => {
     if (audio.value.isPlaying) {
@@ -98,6 +98,14 @@ const timeupdate = () => {
     var seconds = Math.floor(audio.value.audio.currentTime - minutes * 60)
     ctimer.value = minutes + ':' + seconds.toString().padStart(2, '0')
     progress.value = (audio.value.audio.currentTime / audio.value.audio.duration) * 100
+
+    // let mediaState = ({
+    //     duration: audio.value.audio.duration,
+    //     rate: 1,
+    //     postion: audio.value.audio.currentTime
+    // })
+
+    // UpdateMediaSession(mediaState)
 }
 
 const loadmetadata = () => {
