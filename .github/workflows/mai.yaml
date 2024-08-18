@@ -28,7 +28,7 @@ jobs:
         npm install
         
     - name: Build web assets
-      run: npm run build
+      run: npm run generate
       
     - name: Sync web assets to Android
       run: npx cap sync android
