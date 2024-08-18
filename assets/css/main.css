@@ -7,6 +7,10 @@
     @apply flex items-center justify-center
   }
 
+  .between{
+    @apply flex items-center justify-between
+  }
+
   .no-scroll {
     -ms-overflow-style: none;
     scrollbar-width: none;

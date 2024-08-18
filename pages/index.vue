@@ -90,7 +90,9 @@
             </svg>
         </template>
         <template v-else>
+
             <Navbar />
+            
             <h3 class="text-left w-full text-2xl font-semibold text-[#DBEDF3]">Trending Playlist</h3>
 
             <section class="w-full h-auto flex justify-start gap-x-4 overflow-x-scroll no-scroll mt-2">

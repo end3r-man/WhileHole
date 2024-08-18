@@ -17,13 +17,13 @@
     </div>
 
     <div class="w-full h-[90%] center justify-normal flex-col gap-y-4">
-        <template v-if="audio.isPlaying || audio.audio.paused">
-            <div class="w-full h-1/2 center">
-                <img class="w-3/4 h-3/4 object-center rounded-xl" :src="audio.TrackImage" alt="trackImage">
+        <template v-if="audio.audio != null">
+            <div class="w-full h-[55%] center p-4">
+                <img class="size-auto object-center object-contain rounded-xl" :src="audio.TrackImage" alt="trackImage">
             </div>
 
             <div class="w-full h-auto center flex-col truncate">
-                <h4 class="font-semibold text-slate-300">{{ audio.CurrentAlbum.split(" ").slice(0, 2).join(" ") }}</h4>
+                <h4 class="font-semibold text-slate-300 text-xl">{{ audio.TractName }}</h4>
                 <p class="text-sm text-slate-500">{{ audio.CurrentArtist }}</p>
             </div>
 
@@ -37,16 +37,22 @@
                 <p class="text-slate-300 text-sm">{{ etimer }}</p>
             </div>
 
+            <div class="w-full h-auto flex items-center gap-x-2">
+                <h1 class="w-full text-center text-white">Next: <span class="text-emerald-500">{{ audio.Playlist[audio.CurrentTrack+1].name }}</span></h1>
+            </div>
+
             <div class="w-full h-auto center gap-x-6 text-[#DBEDF3]">
                 <Icon class="text-2xl" icon="solar:skip-previous-bold" />
                 <Icon @click="playorpause" class="text-6xl"
                     :icon="audio.isPlaying ? 'solar:pause-circle-bold' : 'solar:play-circle-bold'" />
-                <Icon class="text-2xl" icon="solar:skip-next-bold" />
+                <Icon @click="nextSong(audio.CurrentTrack)" class="text-2xl" icon="solar:skip-next-bold" />
             </div>
         </template>
         <template v-else>
             <div class="w-full h-1/2 center">
-                <Icon class="text-[16rem] text-white" icon="solar:turntable-music-note-bold"></Icon>
+                <div class="size-[300px] center bg-slate-300/20 rounded-md">
+                    <Icon class="text-9xl text-slate-800" icon="solar:music-note-bold-duotone"></Icon>
+                </div>
             </div>
 
             <div class="w-full h-auto center flex-col truncate">
@@ -120,8 +126,6 @@ watch(() => ctimer.value, (time) => {
         nextSong(audio.value.CurrentTrack)
     }
 })
-
-
 
 function HandleSeeker() {
     var seekTime = audio.value.audio.duration * (progress.value / 100)
