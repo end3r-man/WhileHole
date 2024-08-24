@@ -17,7 +17,7 @@ export default function usePlayer(song) {
         audio.value.Playlist = playlist
         audio.value.CurrentTrack = index
         audio.value.CurrentArtist = playlist[index].artists.all[0].name
-        audio.value.CurrentAlbum = playlist[index].album.id
+        audio.value.CurrentAlbum = playlist[index].album.name
         audio.value.TractName = playlist[index].name
         audio.value.TrackImage = playlist[index].image[2].url
 
@@ -35,7 +35,7 @@ export default function usePlayer(song) {
             audio.value.audio.play()
         }, 200)
 
-        // HandleSession()
+        HandleSession()
     }
 
     function playorpause() {
@@ -58,28 +58,26 @@ export default function usePlayer(song) {
         }
     }
 
-    // function HandleSession() {
-    //     let ses = MediaSession.setMetadata({
-    //         title: audio.value.TractName,
-    //         album: audio.value.CurrentAlbum,
-    //         artist: audio.value.CurrentArtist,
-    //         artwork: [{src: audio.value.TrackImage, type: 'image/jpg', sizes: '512x512'}]
-    //     })
+    function HandleSession() {
+        let ses = MediaSession.setMetadata({
+            title: audio.value.TractName,
+            album: audio.value.CurrentAlbum,
+            artist: audio.value.CurrentArtist,
+            artwork: [{src: audio.value.TrackImage, type: 'image/jpg', sizes: '512x512'}]
+        })
 
-    //     console.log("the log is:" + ses);
+        MediaSession.setPlaybackState({
+            playbackState: true
+        })
 
-    //     MediaSession.setPlaybackState({
-    //         playbackState: true
-    //     })
+        MediaSession.setActionHandler({action: 'pause'}, () => {
+            audio.value.audio.pause()
+        })
 
-    //     MediaSession.setActionHandler({action: 'pause'}, () => {
-    //         audio.value.audio.pause()
-    //     })
-
-    //     MediaSession.setActionHandler({action: 'play'}, () => {
-    //         audio.value.audio.play()
-    //     })
-    // }
+        MediaSession.setActionHandler({action: 'play'}, () => {
+            audio.value.audio.play()
+        })
+    }
 
     // async function  UpdateMediaSession(params) {
 
@@ -96,6 +94,5 @@ export default function usePlayer(song) {
         loadSong,
         nextSong,
         playorpause,
-        UpdateMediaSession,
     }
 }
