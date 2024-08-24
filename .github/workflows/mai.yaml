@@ -2,9 +2,9 @@ name: Build and Release Android
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "Media-Session-Test" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "Media-Session-Test" ]
 
 jobs:
 
