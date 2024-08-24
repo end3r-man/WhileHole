@@ -11,7 +11,17 @@ export default function usePlayer(song) {
         Playlist: null,
         TrackImage: null,
         TractName: null,
+        shuffle: false,
+        nextSong: null
     }))
+
+    const NextTrack = () => {
+        if (audio.value.shuffle) {
+            audio.value.nextSong = Math.floor(Math.random() * audio.value.Playlist.length)
+        } else {
+            audio.value.nextSong = audio.value.CurrentTrack + 1
+        }
+    }
 
     function loadSong(index, playlist) {
         audio.value.Playlist = playlist
@@ -35,6 +45,8 @@ export default function usePlayer(song) {
             audio.value.audio.play()
         }, 200)
 
+        NextTrack()
+
         HandleSession()
     }
 
@@ -49,12 +61,14 @@ export default function usePlayer(song) {
     }
 
     function nextSong(index) {
+
+        let cindex = index + 1
+
         if (index === audio.value.Playlist.length) {
             let index = 0
             loadSong(index, audio.value.Playlist)
         }else {
-            let current = index + 1
-            loadSong(current, audio.value.Playlist)
+            loadSong(audio.value.nextSong, audio.value.Playlist)
         }
     }
 
@@ -94,5 +108,6 @@ export default function usePlayer(song) {
         loadSong,
         nextSong,
         playorpause,
+        NextTrack,
     }
 }

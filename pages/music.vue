@@ -38,14 +38,18 @@
             </div>
 
             <div class="w-full h-auto flex items-center gap-x-2">
-                <h1 class="w-full text-center text-white">Next: <span class="text-emerald-500">{{ audio.Playlist[audio.CurrentTrack+1].name }}</span></h1>
+                <h1 class="w-full text-center text-white">Next: <span class="text-emerald-500">{{ audio.Playlist[audio.nextSong].name }}</span></h1>
             </div>
 
             <div class="w-full h-auto center gap-x-6 text-[#DBEDF3]">
+                <Icon @click="audio.audio.loop" class="text-2xl mr-6" icon="solar:infinity-linear" />
                 <Icon class="text-2xl" icon="solar:skip-previous-bold" />
                 <Icon @click="playorpause" class="text-6xl"
                     :icon="audio.isPlaying ? 'solar:pause-circle-bold' : 'solar:play-circle-bold'" />
                 <Icon @click="nextSong(audio.CurrentTrack)" class="text-2xl" icon="solar:skip-next-bold" />
+
+                <Icon @click="audio.shuffle = !audio.shuffle, NextTrack()" class="text-2xl ml-6" icon="solar:shuffle-linear" />
+
             </div>
         </template>
         <template v-else>
@@ -70,6 +74,7 @@
 
             <div class="w-full h-auto center gap-x-6 text-[#DBEDF3]">
                 <Icon class="text-2xl" icon="solar:skip-previous-bold" />
+                <Icon class="text-2xl" icon="solar:skip-previous-bold" />
                 <Icon class="text-6xl" :icon="audio.isPlaying ? 'solar:pause-circle-bold' : 'solar:play-circle-bold'" />
                 <Icon class="text-2xl" icon="solar:skip-next-bold" />
             </div>
@@ -85,7 +90,8 @@ const player = ref(null)
 const ctimer = ref('0:00')
 const etimer = ref('0:00')
 const progress = ref(0)
-const { audio, playorpause, nextSong, UpdateMediaSession } = usePlayer()
+
+const { audio, playorpause, nextSong, NextTrack } = usePlayer()
 
 onMounted(() => {
     if (audio.value.isPlaying) {
