@@ -1,179 +1,157 @@
 <template>
-    <div class="w-full h-full center justify-start flex-col gap-y-2 overflow-hidden"
-        :class="loader ? '' : 'justify-center text-[#404B69]'">
-        <template v-if="!loader">
-            <svg xmlns="http://www.w3.org/2000/svg" width="4rem" height="4rem" viewBox="0 0 24 24">
-                <rect width="7.33" height="7.33" x="1" y="1" fill="currentColor">
-                    <animate id="svgSpinnersBlocksWave0" attributeName="x" begin="0;svgSpinnersBlocksWave1.end+0.2s"
-                        dur="0.6s" values="1;4;1" />
-                    <animate attributeName="y" begin="0;svgSpinnersBlocksWave1.end+0.2s" dur="0.6s" values="1;4;1" />
-                    <animate attributeName="width" begin="0;svgSpinnersBlocksWave1.end+0.2s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                    <animate attributeName="height" begin="0;svgSpinnersBlocksWave1.end+0.2s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                </rect>
-                <rect width="7.33" height="7.33" x="8.33" y="1" fill="currentColor">
-                    <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.1s" dur="0.6s"
-                        values="8.33;11.33;8.33" />
-                    <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.1s" dur="0.6s" values="1;4;1" />
-                    <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.1s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                    <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.1s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                </rect>
-                <rect width="7.33" height="7.33" x="1" y="8.33" fill="currentColor">
-                    <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.1s" dur="0.6s" values="1;4;1" />
-                    <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.1s" dur="0.6s"
-                        values="8.33;11.33;8.33" />
-                    <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.1s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                    <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.1s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                </rect>
-                <rect width="7.33" height="7.33" x="15.66" y="1" fill="currentColor">
-                    <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.2s" dur="0.6s"
-                        values="15.66;18.66;15.66" />
-                    <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.2s" dur="0.6s" values="1;4;1" />
-                    <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.2s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                    <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.2s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                </rect>
-                <rect width="7.33" height="7.33" x="8.33" y="8.33" fill="currentColor">
-                    <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.2s" dur="0.6s"
-                        values="8.33;11.33;8.33" />
-                    <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.2s" dur="0.6s"
-                        values="8.33;11.33;8.33" />
-                    <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.2s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                    <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.2s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                </rect>
-                <rect width="7.33" height="7.33" x="1" y="15.66" fill="currentColor">
-                    <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.2s" dur="0.6s" values="1;4;1" />
-                    <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.2s" dur="0.6s"
-                        values="15.66;18.66;15.66" />
-                    <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.2s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                    <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.2s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                </rect>
-                <rect width="7.33" height="7.33" x="15.66" y="8.33" fill="currentColor">
-                    <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.6s"
-                        values="15.66;18.66;15.66" />
-                    <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.6s"
-                        values="8.33;11.33;8.33" />
-                    <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                    <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                </rect>
-                <rect width="7.33" height="7.33" x="8.33" y="15.66" fill="currentColor">
-                    <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.6s"
-                        values="8.33;11.33;8.33" />
-                    <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.6s"
-                        values="15.66;18.66;15.66" />
-                    <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                    <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                </rect>
-                <rect width="7.33" height="7.33" x="15.66" y="15.66" fill="currentColor">
-                    <animate id="svgSpinnersBlocksWave1" attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.4s"
-                        dur="0.6s" values="15.66;18.66;15.66" />
-                    <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.4s" dur="0.6s"
-                        values="15.66;18.66;15.66" />
-                    <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.4s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                    <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.4s" dur="0.6s"
-                        values="7.33;1.33;7.33" />
-                </rect>
-            </svg>
-        </template>
-        <template v-else>
 
-            <Navbar />
+    <div class="w-full h-2/5 pt-14">
 
-            <h3 class="text-left w-full text-2xl font-semibold text-[#DBEDF3]">Trending Playlist</h3>
+        <div class="carousel carousel-start h-full w-full rounded-box gap-x-4">
 
-            <section class="w-full h-auto flex justify-start gap-x-4 overflow-x-scroll no-scroll mt-2">
-                <template v-for="song in Trending">
-                    <div @click="FetchPlaylist(song.id)"
-                        class="h-full min-w-[60%] w-3/5 rounded-xl flex items-center justify-start flex-col gap-y-2">
-                        <img class="w-full h-full rounded-md object-fill object-center" :src="song.image[2].url"
-                            alt="playlist">
-                    </div>
-                </template>
-            </section>
+            <template v-for="(value, index) in ListItem">
+                <RouterLink :to="value.id + '-playlist'" class="carousel-item w-3/4">
+                    <img class="rounded-lg object-contain" :src="value.image[2].url" alt="Pizza" />
+                </RouterLink>
+            </template>
+        </div>
 
-            <h3 class="text-left w-full text-2xl font-semibold text-[#DBEDF3] mt-5">Top Songs</h3>
-
-            <section class="w-full h-1/2 flex justify-start flex-col gap-y-4 overflow-y-scroll no-scroll mt-2 pb-24">
-                <template v-for="(list, index) in Playlist">
-                    <div @click="handleAudioClick(index, Playlist)"
-                        class="w-full min-h-20 flex items-center justify-between gap-x-2">
-                        <img class="size-20 rounded-md" :src="list.image[2].url" alt="song">
-                        <div class="h-full w-1/2 flex flex-col justify-center">
-                            <h3 class="font-semibold text-slate-300 truncate">{{ list.name }}</h3>
-                            <p class="text-sm text-slate-500">{{ list.artists.all[0].name ?? null }}</p>
-                        </div>
-
-                        <div class="h-full w-[20%] center">
-                            <Icon class="text-4xl text-slate-400" icon="solar:play-circle-bold-duotone" />
-                        </div>
-                    </div>
-                </template>
-                <h1>asldh</h1>
-            </section>
-        </template>
     </div>
+
+    <div class="w-full flex h-[10%] items-center justify-evenly gap-x-2">
+        <button class="btn">Trending</button>
+        <button class="btn">Romance</button>
+        <button class="btn">Rock</button>
+        <button class="btn">Hip Hop</button>
+    </div>
+
+    <div class="w-full h-2/5 flex items-center justify-start flex-col overflow-y-scroll scrollbar-hide gap-y-4">
+        <template v-for="(value, index) in ListAudio">
+            <div class="card card-side border border-base-300 h-24 bg-base-100 shadow-md">
+                <figure class="w-1/4">
+                    <img class="object-center object-scale-down min-w-full w-full h-full" :src="value.image[2].url"
+                        alt="songs" />
+                </figure>
+                <div class="card-body p-0 flex items-center justify-between flex-row px-4">
+                    <div class="w-auto flex items-center justify-center flex-col gap-y-1">
+                        <h2 class="card-title line-clamp-1">{{ splitAndJoin(value.name) }}</h2>
+                        <p class="w-full flex items-center gap-x-1 justify-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                <circle cx="12" cy="6" r="4" fill="currentColor" />
+                                <path fill="currentColor"
+                                    d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"
+                                    opacity="0.5" />
+                            </svg>
+                            Peter & Mery
+                        </p>
+                    </div>
+
+                    <div class="card-actions justify-end">
+                        <button class="btn btn-square btn-neutral">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-width="1.5"
+                                    d="M20.409 9.353a2.998 2.998 0 0 1 0 5.294L7.597 21.614C5.534 22.737 3 21.277 3 18.968V5.033c0-2.31 2.534-3.769 4.597-2.648z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+    </div>
+
+    <!-- 
+    <div class="p-4 mt-20">
+        <input @touchmove="HandleDrag" type="range" min="0" max="100" v-model="current" class="range" />
+    </div> -->
+
+    <div class="btm-nav h-[7%]">
+        <button class="active">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+        </button>
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </button>
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+        </button>
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+        </button>
+    </div>
+
 </template>
 
 <script setup>
-import { CapacitorHttp } from '@capacitor/core';
-import { Icon } from '@iconify/vue';
-import { MediaSession } from '@jofr/capacitor-media-session';
-
-const Trending = ref(null)
-const Playlist = ref(null)
-const loader = ref(false)
-const { loadSong, audio } = usePlayer()
-
-const handleAudioClick = (index, playlist) => {
-    loadSong(index, playlist)
-}
+const current = ref(40)
+const ListItem = ref(null)
+const ListAudio = ref(null)
 
 onMounted(() => {
-    FetchTrending()
+    ListItem.value = fetchPlaylist()
 })
 
-async function FetchTrending() {
-    const options = {
-        url: 'https://saavn.dev/api/search/playlists',
-        params: { query: 'tamil', page: 0, limit: 10 }
-    };
-
-    try {
-        const response = await CapacitorHttp.get(options);
-        Trending.value = response.data.data.results
-        await FetchPlaylist(Trending.value[0].id)
-    } catch (error) {
-        console.log(error);
-    }
+const splitAndJoin = (str) => {
+    const words = str.split(' ');
+    return words.slice(0, 2).join(' ');
 }
 
-async function FetchPlaylist(id) {
-    const options = {
-        url: 'https://saavn.dev/api/playlists',
-        params: { id: id, page: 0, limit: 10 }
-    };
+function HandleDrag(params) {
+    params.preventDefault();
+
+    const touch = params.touches[0];
+    const input = params.target;
+
+    const rect = input.getBoundingClientRect();
+    const offsetX = touch.clientX - rect.left;
+    const percentage = offsetX / rect.width;
+    const newValue = Math.round(percentage * (input.max - input.min) + Number(input.min));
+
+    current.value = newValue
+}
+
+
+async function fetchPlaylist() {
+
+    let playlist = null
 
     try {
-        const response = await CapacitorHttp.get(options);
-        Playlist.value = response.data.data.songs
-        loader.value = true
+        const response = await fetch('https://jio-api-ten.vercel.app/api/search/playlists?query=tamil?limit=10')
+        const value = await response.json();
+        playlist = value.data.results;
+
+        await fetchSongs(playlist)
     } catch (error) {
         console.log(error);
     }
+
+    ListItem.value = playlist
+}
+
+async function fetchSongs(item) {
+    let list = null
+
+    try {
+        const res = await fetch('https://jio-api-ten.vercel.app/api/playlists?id=' + item[0].id)
+        const value = await res.json()
+        list = value.data.songs
+    } catch (error) {
+        console.log(error);
+    }
+
+    ListAudio.value = list
+    console.log(ListAudio.value);
+
 }
 </script>
