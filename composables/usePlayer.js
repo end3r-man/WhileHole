@@ -14,7 +14,6 @@ export default function usePlayer(song) {
     }))
 
     function loadSong(params) {
-
         source.value.CurrentAlbum = params.album.name
         source.value.CurrentArtist = params.artists.all[0].name
         source.value.CurrentTrack = params.name
@@ -35,7 +34,7 @@ export default function usePlayer(song) {
             source.value.audio.play()
         }, 200)
 
-        // HandleSession()
+        HandleSession()
     }
 
     function playorpause() {
@@ -58,6 +57,40 @@ export default function usePlayer(song) {
         }
     }
 
+<<<<<<< HEAD
+=======
+    function HandleSession() {
+        let ses = MediaSession.setMetadata({
+            title: audio.value.TractName,
+            album: audio.value.CurrentAlbum,
+            artist: audio.value.CurrentArtist,
+            artwork: [{src: audio.value.TrackImage, type: 'image/jpg', sizes: '512x512'}]
+        })
+
+        MediaSession.setPlaybackState({
+            playbackState: true
+        })
+
+        MediaSession.setActionHandler({action: 'pause'}, () => {
+            audio.value.audio.pause()
+        })
+
+        MediaSession.setActionHandler({action: 'play'}, () => {
+            audio.value.audio.play()
+        })
+    }
+
+    // async function  UpdateMediaSession(params) {
+
+    //     await MediaSession.setPositionState({
+    //         duration: params.duration,
+    //         playbackRate: params.rate,
+    //         position: params.position
+    //     })
+        
+    // }
+
+>>>>>>> origin/Media-Session-Test
     return {
         source,
         loadSong,
