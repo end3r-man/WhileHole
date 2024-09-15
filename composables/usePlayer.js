@@ -1,5 +1,3 @@
-import { MediaSession } from "@jofr/capacitor-media-session"
-
 export default function usePlayer(song) {
 
     const source = useState('song', () => ({

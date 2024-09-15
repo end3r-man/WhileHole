@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">nuxt-app</string>
-    <string name="title_activity_main">nuxt-app</string>
-    <string name="package_name">nuxt.app</string>
-    <string name="custom_url_scheme">nuxt.app</string>
+    <string name="app_name">whilehole</string>
+    <string name="title_activity_main">whilehole</string>
+    <string name="package_name">whilehole.elg.foundation</string>
+    <string name="custom_url_scheme">whilehole.elg.foundation</string>
 </resources>

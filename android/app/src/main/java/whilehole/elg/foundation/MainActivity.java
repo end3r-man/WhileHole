@@ -1,4 +1,4 @@
-package nuxt.app;
+package whilehole.elg.foundation;
 
 import com.getcapacitor.BridgeActivity;
 

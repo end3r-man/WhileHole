@@ -26,12 +26,12 @@ importers:
       '@capacitor/keyboard':
         specifier: 6.0.1
         version: 6.0.1(@capacitor/core@6.1.0)
+      '@capacitor/splash-screen':
+        specifier: ^6.0.2
+        version: 6.0.2(@capacitor/core@6.1.0)
       '@capacitor/status-bar':
         specifier: 6.0.0
         version: 6.0.0(@capacitor/core@6.1.0)
-      '@jofr/capacitor-media-session':
-        specifier: ^4.0.0
-        version: 4.0.0(@capacitor/core@6.1.0)
       install:
         specifier: ^0.13.0
         version: 0.13.0
@@ -248,6 +248,11 @@ packages:
 
   '@capacitor/keyboard@6.0.1':
     resolution: {integrity: sha512-fBjqQaMc5uhFj6ycLnLa2hzQsR77pj/iuLLATkWihMUze3dD+IkwqFnEyOLsyk+52uoOYM7WkziSpNTquU1sZA==}
+    peerDependencies:
+      '@capacitor/core': ^6.0.0
+
+  '@capacitor/splash-screen@6.0.2':
+    resolution: {integrity: sha512-WC0KYZ+ev15up03xs4fTnoTKwBVUSxXsKKQr/8XAncvi/nAG8qrpanW8OlavSC5zF5e1IZZDLsI2GSv0SkZ7VQ==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -746,11 +751,6 @@ packages:
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
-
-  '@jofr/capacitor-media-session@4.0.0':
-    resolution: {integrity: sha512-IGfc6BUzeeR0sJkk+0/jij3l0h78NdTqPMwBc9LXZrojtiqNtg4tw3CnIkYGccwZ/0glV3hPl8HVNTElOPVCyg==}
-    peerDependencies:
-      '@capacitor/core': ^6.0.0
 
   '@jridgewell/gen-mapping@0.3.5':
     resolution: {integrity: sha512-IzL8ZoEDIBRWEzlCcRhOaCupYyN5gdIK+Q6fbFdPDg6HqX6jpkItn7DFIpW9LQzXG6Df9sA7+OKnq0qlz/GaQg==}
@@ -3802,6 +3802,10 @@ snapshots:
     dependencies:
       '@capacitor/core': 6.1.0
 
+  '@capacitor/splash-screen@6.0.2(@capacitor/core@6.1.0)':
+    dependencies:
+      '@capacitor/core': 6.1.0
+
   '@capacitor/status-bar@6.0.0(@capacitor/core@6.1.0)':
     dependencies:
       '@capacitor/core': 6.1.0
@@ -4156,10 +4160,6 @@ snapshots:
       strip-ansi-cjs: strip-ansi@6.0.1
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
-
-  '@jofr/capacitor-media-session@4.0.0(@capacitor/core@6.1.0)':
-    dependencies:
-      '@capacitor/core': 6.1.0
 
   '@jridgewell/gen-mapping@0.3.5':
     dependencies:

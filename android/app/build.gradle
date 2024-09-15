@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "nuxt.app"
+    namespace "whilehole.elg.foundation"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "nuxt.app"
+        applicationId "whilehole.elg.foundation"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.

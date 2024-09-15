@@ -18,8 +18,8 @@
     "@capacitor/core": "6.1.0",
     "@capacitor/haptics": "6.0.0",
     "@capacitor/keyboard": "6.0.1",
+    "@capacitor/splash-screen": "^6.0.2",
     "@capacitor/status-bar": "6.0.0",
-    "@jofr/capacitor-media-session": "^4.0.0",
     "install": "^0.13.0",
     "nuxt": "^3.12.4",
     "vue": "latest"
