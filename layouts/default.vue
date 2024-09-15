@@ -1,8 +1,7 @@
 <template>
     <div class="w-screen h-dvh px-4 ">
-
         <slot />
-
+        <Navbar />
     </div>
 </template>
 

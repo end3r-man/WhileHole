@@ -33,17 +33,15 @@ export default function usePlayer(song) {
             source.value.isPlaying = true
             source.value.audio.play()
         }, 200)
-
-        HandleSession()
     }
 
     function playorpause() {
-        if (audio.value.isPlaying && !audio.value.audio.paused) {
-            audio.value.audio.pause()
-            audio.value.isPlaying = false
+        if (source.value.isPlaying) {
+            source.value.audio.pause()
+            source.value.isPlaying = false
         } else {
-            audio.value.audio.play()
-            audio.value.isPlaying = true
+            source.value.audio.play()
+            source.value.isPlaying = true
         }
     }
 
@@ -57,40 +55,6 @@ export default function usePlayer(song) {
         }
     }
 
-<<<<<<< HEAD
-=======
-    function HandleSession() {
-        let ses = MediaSession.setMetadata({
-            title: audio.value.TractName,
-            album: audio.value.CurrentAlbum,
-            artist: audio.value.CurrentArtist,
-            artwork: [{src: audio.value.TrackImage, type: 'image/jpg', sizes: '512x512'}]
-        })
-
-        MediaSession.setPlaybackState({
-            playbackState: true
-        })
-
-        MediaSession.setActionHandler({action: 'pause'}, () => {
-            audio.value.audio.pause()
-        })
-
-        MediaSession.setActionHandler({action: 'play'}, () => {
-            audio.value.audio.play()
-        })
-    }
-
-    // async function  UpdateMediaSession(params) {
-
-    //     await MediaSession.setPositionState({
-    //         duration: params.duration,
-    //         playbackRate: params.rate,
-    //         position: params.position
-    //     })
-        
-    // }
-
->>>>>>> origin/Media-Session-Test
     return {
         source,
         loadSong,
