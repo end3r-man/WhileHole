@@ -1,7 +1,7 @@
 <template>
   <template v-if="ListAudio != null">
     <div class="w-auto flex items-center justify-center flex-col pt-14">
-      <img class="size-[250px] object-center object-scale-down rounded-lg" :src="ListAudio.image[2].url"
+      <img class="size-[250px] object-center object-scale-down rounded-lg" :src="(ListAudio.image.length > 0) ? ListAudio.image[0].url : playListImage"
         alt="playlist-cover">
 
       <h1 class="card-title mt-4">{{ ListAudio.name }}</h1>
@@ -10,13 +10,13 @@
 
     <div class="w-full h-1/2 flex items-center justify-start flex-col overflow-y-scroll scrollbar-hide mt-6 gap-y-4">
         <template v-for="(value, index) in ListAudio.songs">
-            <div class="card card-side border border-base-300 h-24 bg-base-100 shadow-md">
-                <figure class="w-1/4">
+            <div @click="loadSong(value)" class="card card-side border border-base-300 h-24 bg-base-100 shadow-md">
+                <figure class="min-w-[25%] w-1/4">
                     <img class="object-center object-scale-down w-full h-full" :src="value.image[2].url" alt="songs" />
                 </figure>
-                <div class="card-body p-0 flex items-center justify-between flex-row px-4">
+                <div class="card-body p-0 flex items-center justify-between flex-row px-3">
                     <div class="w-auto flex items-center justify-center flex-col gap-y-1">
-                        <h2 class="card-title line-clamp-1">{{splitAndJoin(value.name)}}</h2>
+                        <h2 class="card-title w-full text-start line-clamp-1">{{splitAndJoin(value.name)}}</h2>
                         <p class="w-full flex items-center gap-x-1 justify-start">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                                 <circle cx="12" cy="6" r="4" fill="currentColor" />
@@ -24,7 +24,7 @@
                                     d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"
                                     opacity="0.5" />
                             </svg>
-                            {{ value.artists.all[0].name }}
+                            <span class="line-clamp-1 whitespace-nowrap">{{ value.artists.all[0].name }}</span>
                         </p>
                     </div>
 
@@ -46,9 +46,12 @@
 </template>
 
 <script setup>
+import playListImage from "@/assets/images/default-playlist-500x500.jpg"
+
 const route = useRoute()
 const id = route.params.id
 const ListAudio = ref(null)
+const {source, loadSong} = usePlayer()
 
 onMounted(() => {
   fetchSongs()
@@ -57,6 +60,10 @@ onMounted(() => {
 const splitAndJoin = (str) => {
     const words = str.split(' ');
     return words.slice(0, 2).join(' ');
+}
+
+function HandlePlayer(params) {
+  console.log(params);
 }
 
 async function fetchSongs(item) {
@@ -71,7 +78,6 @@ async function fetchSongs(item) {
   }
 
   ListAudio.value = list
-  console.log(ListAudio.value.songs[0].artists.primary[0].name);
 
 }
 </script>

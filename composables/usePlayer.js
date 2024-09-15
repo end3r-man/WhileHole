@@ -2,7 +2,7 @@ import { MediaSession } from "@jofr/capacitor-media-session"
 
 export default function usePlayer(song) {
 
-    const audio = useState('song', () => ({
+    const source = useState('song', () => ({
         isPlaying: false,
         audio: null,
         CurrentArtist: null,
@@ -10,29 +10,29 @@ export default function usePlayer(song) {
         CurrentTrack: null,
         Playlist: null,
         TrackImage: null,
-        TractName: null,
+        TrackUrl: null
     }))
 
-    function loadSong(index, playlist) {
-        audio.value.Playlist = playlist
-        audio.value.CurrentTrack = index
-        audio.value.CurrentArtist = playlist[index].artists.all[0].name
-        audio.value.CurrentAlbum = playlist[index].album.id
-        audio.value.TractName = playlist[index].name
-        audio.value.TrackImage = playlist[index].image[2].url
+    function loadSong(params) {
 
-        if (audio.value.isPlaying && audio.value.audio.src != '') {
-            audio.value.audio.pause()
-            audio.value.isPlaying = false
-            audio.value.audio.src = ''
+        source.value.CurrentAlbum = params.album.name
+        source.value.CurrentArtist = params.artists.all[0].name
+        source.value.CurrentTrack = params.name
+        source.value.TrackImage = params.image[2].url
+        source.value.TrackUrl = params.downloadUrl[4].url
+
+        if (source.value.isPlaying && source.value.audio.src != '') {
+            source.value.audio.pause()
+            source.value.isPlaying = false
+            source.value.audio.src = ''
         }
 
-        audio.value.audio = new Audio()
-        audio.value.audio.src = playlist[index].downloadUrl[3].url
+        source.value.audio = new Audio()
+        source.value.audio.src = source.value.TrackUrl
 
         setTimeout(() => {
-            audio.value.isPlaying = true
-            audio.value.audio.play()
+            source.value.isPlaying = true
+            source.value.audio.play()
         }, 200)
 
         // HandleSession()
@@ -52,50 +52,16 @@ export default function usePlayer(song) {
         if (index === audio.value.Playlist.length) {
             let index = 0
             loadSong(index, audio.value.Playlist)
-        }else {
+        } else {
             let current = index + 1
             loadSong(current, audio.value.Playlist)
         }
     }
 
-    // function HandleSession() {
-    //     let ses = MediaSession.setMetadata({
-    //         title: audio.value.TractName,
-    //         album: audio.value.CurrentAlbum,
-    //         artist: audio.value.CurrentArtist,
-    //         artwork: [{src: audio.value.TrackImage, type: 'image/jpg', sizes: '512x512'}]
-    //     })
-
-    //     console.log("the log is:" + ses);
-
-    //     MediaSession.setPlaybackState({
-    //         playbackState: true
-    //     })
-
-    //     MediaSession.setActionHandler({action: 'pause'}, () => {
-    //         audio.value.audio.pause()
-    //     })
-
-    //     MediaSession.setActionHandler({action: 'play'}, () => {
-    //         audio.value.audio.play()
-    //     })
-    // }
-
-    // async function  UpdateMediaSession(params) {
-
-    //     await MediaSession.setPositionState({
-    //         duration: params.duration,
-    //         playbackRate: params.rate,
-    //         position: params.position
-    //     })
-        
-    // }
-
     return {
-        audio,
+        source,
         loadSong,
         nextSong,
         playorpause,
-        UpdateMediaSession,
     }
 }
