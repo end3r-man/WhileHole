@@ -1,0 +1,5 @@
+{
+  "appId": "nuxt.app",
+  "appName": "nuxt-app",
+  "webDir": ".output/public"
+}
