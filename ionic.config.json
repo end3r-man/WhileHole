@@ -1,7 +1,0 @@
-{
-  "name": "whilehole",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "custom"
-}
