@@ -3,25 +3,25 @@
     <div class="w-full h-3/5 flex items-center flex-col">
       <img class="w-full h-full rounded-box object-center object-cover" :src="store.audio ? store.trackImage : player" alt="player">
       <h1 class="card-title mt-4">{{ store.audio ? store.currentTrack : 'Play something' }}</h1>
-      <p class="line-clamp-1">{{ store.audio ? `${store.currentArtist}` : 'Artists' }}</p>
+      <p>{{ store.audio ? `${store.currentArtist}` : 'Artists' }}</p>
     </div>
     <div class="w-full h-2/5 center flex-col gap-y-8">
       <div class="w-full flex items-center justify-between">
-        <button @click="switchLoop()">
+        <button :disabled="!store.audio" @click="switchLoop()">
           <Icon class="text-2xl" :class="{ 'text-primary': loop }" icon="solar:infinity-bold" />
         </button>
         <div class="w-full center gap-x-4">
-          <button @click="skipTrack('previous')">
+          <button :disabled="!store.audio" @click="skipTrack('previous')">
             <Icon class="text-4xl" icon="solar:skip-previous-bold" />
           </button>
-          <button @click="playOrPause()">
+          <button :disabled="!store.audio" @click="playOrPause()">
             <Icon class="text-6xl text-primary" :icon="store.isPlaying ? 'solar:pause-bold' : 'solar:play-bold'" />
           </button>
-          <button @click="skipTrack('next')">
+          <button :disabled="!store.audio" @click="skipTrack('next')">
             <Icon class="text-4xl" icon="solar:skip-next-bold" />
           </button>
         </div>
-        <button>
+        <button :disabled="!store.audio">
           <Icon class="text-2xl" icon="solar:shuffle-broken" />
         </button>
       </div>
