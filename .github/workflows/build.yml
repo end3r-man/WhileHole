@@ -13,12 +13,12 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Updated to the latest version
     
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '21'  # Adjust the Node.js version according to your project requirements
+        node-version: '18'  # Consider using an LTS version
         
     - name: Install dependencies
       run: |
@@ -35,7 +35,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: '22'
+        java-version: '17'  # Consider downgrading to Java 17 for compatibility
         distribution: 'temurin'
         cache: gradle
       
@@ -43,7 +43,7 @@ jobs:
       run: |
         cd android
         chmod +x ./gradlew  # Ensure Gradle wrapper has executable permission
-        ./gradlew assembleRelease
+        ./gradlew assembleRelease --stacktrace  # Added stacktrace for debugging
     
     - name: Move APK to build directory
       run: |
