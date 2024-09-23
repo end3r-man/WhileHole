@@ -1,5 +1,5 @@
 <template>
-  <div class="btm-nav">
+  <div class="btm-nav max-h-20">
     <NuxtLink to="/" :class="(route.name == 'index') ? 'active text-primary' : ''">
       <Icon class="text-4xl" icon="solar:home-smile-bold" />
     </NuxtLink>

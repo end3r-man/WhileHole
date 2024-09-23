@@ -21,46 +21,50 @@
 
   </div>
 </template>
-
 <script setup>
 import { CapacitorHttp } from '@capacitor/core';
+import { ref, onMounted } from 'vue';
 
-const {setSong, store} = usePlayer()
-const playList = ref(null)
-const trendingList = ref(null)
-onMounted(() => {
-  fetchPlayList()
-})
+const { setSong, store } = usePlayer();
+const playList = ref([]);
+const trendingList = ref([]);
 
+onMounted(fetchPlayList);
 
 async function fetchPlayList() {
-
   const data = {
     url: 'https://jio-api-ten.vercel.app/api/search/playlists',
     params: { query: 'tamil', limit: 10, page: 0 }
-  }
+  };
 
-  try {
-    const res = await CapacitorHttp.get(data)
-    playList.value = res.data.data.results
-  } catch (error) {
-    console.log('unable to get playlist');
+  const res = await fetchData(data);
+  if (res) {
+    playList.value = res.data.data.results;
+    if (playList.value.length > 0) {
+      await fetchTrending(playList.value[0].id);
+    }
   }
-
-  await fetchTrending(playList.value[0].id)
 }
 
-async function fetchTrending(params) {
+async function fetchTrending(id) {
   const data = {
     url: 'https://jio-api-ten.vercel.app/api/playlists',
-    params: { id: params, limit: 20, page: 0 }
-  }
+    params: { id, limit: 20, page: 0 }
+  };
 
+  await fetchData(data, trendingList);
+}
+
+async function fetchData(data, targetRef = null) {
   try {
-    const res = await CapacitorHttp.get(data)
-    trendingList.value = res.data.data.songs
+    const res = await CapacitorHttp.get(data);
+    if (targetRef) {
+      targetRef.value = res.data.data.songs || [];
+    }
+    return res;
   } catch (error) {
-    console.log('unable to get playlist');
+    console.error('Error fetching data:', error);
+    return null;
   }
 }
 </script>

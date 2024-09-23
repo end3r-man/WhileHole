@@ -43,6 +43,7 @@ export default function usePlayer() {
 
     store.value.audio.play().then(async () => {
       store.value.isPlaying = true;
+      console.log(store.value.audio);
       await mediaSession();
     }).catch((error) => {
       store.value.isPlaying = false;
