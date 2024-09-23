@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+
+    *::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scroll {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .center {
+        @apply flex items-center justify-center
+    }
+}

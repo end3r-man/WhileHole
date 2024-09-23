@@ -5,6 +5,9 @@ project(':capacitor-android').projectDir = new File('../node_modules/.pnpm/@capa
 include ':capacitor-app'
 project(':capacitor-app').projectDir = new File('../node_modules/.pnpm/@capacitor+app@6.0.1_@capacitor+core@6.1.2/node_modules/@capacitor/app/android')
 
+include ':capacitor-device'
+project(':capacitor-device').projectDir = new File('../node_modules/.pnpm/@capacitor+device@6.0.1_@capacitor+core@6.1.2/node_modules/@capacitor/device/android')
+
 include ':capacitor-haptics'
 project(':capacitor-haptics').projectDir = new File('../node_modules/.pnpm/@capacitor+haptics@6.0.1_@capacitor+core@6.1.2/node_modules/@capacitor/haptics/android')
 
@@ -13,3 +16,9 @@ project(':capacitor-keyboard').projectDir = new File('../node_modules/.pnpm/@cap
 
 include ':capacitor-status-bar'
 project(':capacitor-status-bar').projectDir = new File('../node_modules/.pnpm/@capacitor+status-bar@6.0.1_@capacitor+core@6.1.2/node_modules/@capacitor/status-bar/android')
+
+include ':jofr-capacitor-media-session'
+project(':jofr-capacitor-media-session').projectDir = new File('../node_modules/.pnpm/@jofr+capacitor-media-session@4.0.0_@capacitor+core@6.1.2/node_modules/@jofr/capacitor-media-session/android')
+
+include ':capacitor-music-controls-plugin'
+project(':capacitor-music-controls-plugin').projectDir = new File('../node_modules/.pnpm/capacitor-music-controls-plugin@https+++codeload.github.com+ingageco+capacitor-music-controls_vdfg7ymhwfr7aoavms77r5abee/node_modules/capacitor-music-controls-plugin/android')
