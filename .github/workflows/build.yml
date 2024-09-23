@@ -7,7 +7,6 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
     name: Build and Release APK
     runs-on: ubuntu-latest
@@ -33,7 +32,7 @@ jobs:
     - name: Sync web assets to Android
       run: npx cap sync android
 
-    - name: set up JDK
+    - name: Set up JDK
       uses: actions/setup-java@v3
       with:
         java-version: '22'
@@ -56,7 +55,7 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "build/app-release.apk"
-        tag: v${{ github.run_number }}
+        tag: v${{ github.run_number }}  # Consider a more semantic versioning strategy
         token: ${{ secrets.TOKEN }}
         draft: false
         prerelease: false
