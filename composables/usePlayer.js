@@ -10,9 +10,9 @@ export default function usePlayer() {
     currentAlbum: null,
     trackImage: null,
     trackSource: null,
+    trackId: null,
     playList: {
       id: null,
-      currentId: null,
       tracks: [],
     },
   }));
@@ -23,6 +23,7 @@ export default function usePlayer() {
     store.value.currentAlbum = params.album.name;
     store.value.trackSource = params.downloadUrl[3]?.url;
     store.value.trackImage = params.image[2]?.url;
+    store.value.trackId = params.id
     playSong();
   };
 
@@ -43,7 +44,6 @@ export default function usePlayer() {
 
     store.value.audio.play().then(async () => {
       store.value.isPlaying = true;
-      console.log(store.value.audio);
       await mediaSession();
     }).catch((error) => {
       store.value.isPlaying = false;

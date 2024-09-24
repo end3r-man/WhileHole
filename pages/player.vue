@@ -1,41 +1,64 @@
 <template>
-  <div class="w-full h-[calc(100%-90px)] flex items-center justify-start gap-y-8 flex-col">
-    <div class="w-full h-3/5 flex items-center flex-col">
-      <img class="w-full h-full rounded-box object-center object-cover" :src="store.audio ? store.trackImage : player" alt="player">
+  <div class="w-full h-[calc(100%-90px)] flex items-center justify-start flex-col">
+
+    <div class="w-full flex items-center justify-between">
+
+      <NuxtLink to="/" class="btn btn-square btn-neutral">
+        <Icon class="text-xl" icon="solar:alt-arrow-left-line-duotone" />
+      </NuxtLink>
+
+      <h1 class="card-title">Now Playing</h1>
+
+      <NuxtLink to="/" class="btn btn-square btn-neutral">
+        <Icon class="text-xl" icon="solar:menu-dots-bold" />
+      </NuxtLink>
+
+    </div>
+
+    <div class="w-full h-3/5 flex items-center flex-col mt-8">
+      <img class="w-full h-full rounded-box object-center object-cover" :src="store.audio ? store.trackImage : player"
+        alt="player">
       <h1 class="card-title mt-4">{{ store.audio ? store.currentTrack : 'Play something' }}</h1>
       <p>{{ store.audio ? `${store.currentArtist}` : 'Artists' }}</p>
     </div>
-    <div class="w-full h-2/5 center flex-col gap-y-8">
+    <div class="w-full h-2/5 flex items-center justify-evenly flex-col mt-6 gap-y-3">
+      <div class="w-full center flex-col gap-y-2">
+        <div class="w-full">
+          <input type="range" @click="handleTouch" @touchmove="handleDrag" :disabled="!store.audio" min="0" max="100"
+            :value="progress" class="range" />
+        </div>
+        <div class="w-full flex items-center justify-between">
+          <span>{{ ctimer }}</span>
+          <span>{{ store.audio ? etimer : '0:00' }}</span>
+        </div>
+      </div>
       <div class="w-full flex items-center justify-between">
         <button :disabled="!store.audio" @click="switchLoop()">
-          <Icon class="text-2xl" :class="{ 'text-primary': loop }" icon="solar:infinity-bold" />
+          <Icon class="text-2xl" :class="loop ? 'text-primary' : 'text-neutral'" icon="solar:infinity-bold" />
         </button>
         <div class="w-full center gap-x-4">
           <button :disabled="!store.audio" @click="skipTrack('previous')">
-            <Icon class="text-4xl" icon="solar:skip-previous-bold" />
+            <Icon class="text-3xl" icon="solar:skip-previous-bold" />
           </button>
           <button :disabled="!store.audio" @click="playOrPause()">
-            <Icon class="text-6xl text-primary" :icon="store.isPlaying ? 'solar:pause-bold' : 'solar:play-bold'" />
+            <Icon class="text-7xl text-primary" :icon="store.isPlaying ? 'solar:pause-bold' : 'solar:play-bold'" />
           </button>
           <button :disabled="!store.audio" @click="skipTrack('next')">
-            <Icon class="text-4xl" icon="solar:skip-next-bold" />
+            <Icon class="text-3xl" icon="solar:skip-next-bold" />
           </button>
         </div>
         <button :disabled="!store.audio">
-          <Icon class="text-2xl" icon="solar:shuffle-broken" />
+          <Icon class="text-2xl text-neutral" icon="solar:shuffle-broken" />
         </button>
-      </div>
-      <div class="w-full flex items-center justify-between gap-x-3">
-        <span>{{ ctimer }}</span>
-        <input type="range" @click="handleTouch" @touchmove="handleDrag" :disabled="!store.audio" min="0" max="100" :value="progress" class="range" />
-        <span>{{ store.audio ? etimer : '0:00' }}</span>
       </div>
     </div>
   </div>
+  
 </template>
 
 <script setup>
 import player from '@/assets/images/player.jpg';
+import { CapacitorHttp } from '@capacitor/core';
 import { Icon } from '@iconify/vue/dist/iconify.js';
 import { ref, onMounted, watchEffect } from 'vue';
 

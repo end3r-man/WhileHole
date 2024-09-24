@@ -14,7 +14,7 @@
     <div class="w-full h-[60%] flex items-center justify-start flex-col gap-y-4 pb-16 overflow-y-scroll no-scroll">
 
       <template v-for="item in trendingList">
-        <SongCard @click="setSong(item)" :item="item" />
+        <SongCard v-on:click="store.trackId == item.id ?  playOrPause() : setSong(item) " :item="item" />
       </template>
 
     </div>
@@ -23,9 +23,10 @@
 </template>
 <script setup>
 import { CapacitorHttp } from '@capacitor/core';
+import { Icon } from '@iconify/vue/dist/iconify.js';
 import { ref, onMounted } from 'vue';
 
-const { setSong, store } = usePlayer();
+const { setSong, store, playOrPause } = usePlayer();
 const playList = ref([]);
 const trendingList = ref([]);
 
