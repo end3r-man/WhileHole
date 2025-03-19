@@ -19,7 +19,7 @@
     "@capacitor/keyboard": "6.0.2",
     "@capacitor/status-bar": "6.0.1",
     "@jofr/capacitor-media-session": "^4.0.0",
-    "axios": "^1.7.7",
+    "axios": "^1.8.2",
     "capacitor-music-controls-plugin": "github:ingageco/capacitor-music-controls-plugin",
     "nuxt": "^3.16.0",
     "vue": "latest",
